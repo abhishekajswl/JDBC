@@ -1,0 +1,23 @@
+I have created table like below,
+
+
+mysql> create table employee_info(
+    -> employee_id int auto_increment primary key,
+    -> employee_name varchar(25) not null,
+    -> employee_address varchar(25) not null,
+    -> employee_salary decimal(7,2) not null
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+
+
+mysql> desc employee_info;
++------------------+--------------+------+-----+---------+----------------+
+| Field            | Type         | Null | Key | Default | Extra          |
++------------------+--------------+------+-----+---------+----------------+
+| employee_id      | int          | NO   | PRI | NULL    | auto_increment |
+| employee_name    | varchar(25)  | NO   |     | NULL    |                |
+| employee_address | varchar(25)  | NO   |     | NULL    |                |
+| employee_salary  | decimal(7,2) | NO   |     | NULL    |                |
++------------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
