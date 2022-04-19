@@ -1,0 +1,26 @@
+Consider the following scenario,
+
+		Movie
+		1. Movie Id
+		2. Movie name
+		3. Budget
+		
+		
+		Actor
+		1. Actor Id
+		2. Actor Name
+		
+		
+In each movie there can be multiple actors and one actor can do multiple movies. Construct the DB 
+Schema and INSERT VALUES USING COMMAND LINE for the above scenario after that create REST APIs on-
+
+	1. List all the movies done by a particular actor.
+	2. List all the actors in a particular movie.
+	3. List all the movies having budget greater than 1,00,000.
+	4. Count the actors who have done only one movie.
+	5. List all the actors whose name length is more than 6 characters and have done a movie having 
+	   budget greater then
+	   
+	   
+FOLLOW THE PROPER FOLDER STRUCTURE FOR THE ABOVE PROBLEM.
+	 

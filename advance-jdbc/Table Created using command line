@@ -1,0 +1,139 @@
+below are the table created,
+
+
+1. Movie Table:- 
+
+mysql> create table movie(
+    -> movie_id int auto_increment primary key,
+    -> movie_name varchar(25) not null,
+    -> budget int not null);
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> desc movie;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| movie_id   | int         | NO   | PRI | NULL    | auto_increment |
+| movie_name | varchar(25) | NO   |     | NULL    |                |
+| budget     | int         | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.03 sec)
+
+
+2. Actor Table:- 
+
+ mysql> create table actor(
+    -> actor_id int auto_increment primary key,
+    -> actor_name varchar(25) not null);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc actor;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| actor_id   | int         | NO   | PRI | NULL    | auto_increment |
+| actor_name | varchar(25) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+
+
+3. Many to Many Relational Table : Mov_Actor :- 
+ 
+mysql> create table mov_actor(
+    -> movie_id int,
+    -> actor_id int,
+    -> foreign key (movie_id) references movie(movie_id),
+    -> foreign key (actor_id) references actor(actor_id)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc mov_actor;
++----------+------+------+-----+---------+-------+
+| Field    | Type | Null | Key | Default | Extra |
++----------+------+------+-----+---------+-------+
+| movie_id | int  | YES  | MUL | NULL    |       |
+| actor_id | int  | YES  | MUL | NULL    |       |
++----------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+
+
+4. Added below data to Movie table,
+
+mysql> insert into movie(movie_name,budget) values ( "mov_1" , 100000 );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into movie(movie_name,budget) values ( "mov_2" , 50000 );
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into movie(movie_name,budget) values ( "mov_3" , 200000 );
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from movie;
++----------+------------+--------+
+| movie_id | movie_name | budget |
++----------+------------+--------+
+|        1 | mov_1      | 100000 |
+|        2 | mov_2      |  50000 |
+|        3 | mov_3      | 200000 |
++----------+------------+--------+
+3 rows in set (0.00 sec).
+
+
+
+5. Added below data in Actor table,
+
+mysql> insert into actor(actor_name) values ( "actor_1" );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into actor(actor_name) values ( "actor_20" );
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into actor(actor_name) values ( "actor_3" );
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into actor(actor_name) values ( "actor_40" );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from actor;
++----------+------------+
+| actor_id | actor_name |
++----------+------------+
+|        1 | actor_1    |
+|        2 | actor_20   |
+|        3 | actor_3    |
+|        4 | actor_40   |
++----------+------------+
+4 rows in set (0.00 sec)
+
+
+
+6. Mapped many to many relationship in mov_actor table as below,
+
+mysql> insert into mov_actor values ( 1, 1 );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mov_actor values ( 1, 2 );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mov_actor values ( 2, 2 );
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mov_actor values ( 2, 3 );
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mov_actor values ( 3, 4 );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from mov_actor;
++----------+----------+
+| movie_id | actor_id |
++----------+----------+
+|        1 |        1 |
+|        1 |        2 |
+|        2 |        2 |
+|        2 |        3 |
+|        3 |        4 |
++----------+----------+
+5 rows in set (0.00 sec)
